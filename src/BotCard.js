@@ -1,6 +1,8 @@
 import React from "react";
+import {connect} from 'react-redux'
+import {deleteMatch} from './actions/actions'
 
-const BotCard = ({bot}) => {
+const BotCard = ({bot, match, deleteMatch}) => {
 
   let botType;
 
@@ -18,11 +20,18 @@ const BotCard = ({bot}) => {
       botType = <div />;
   }
 
+  const unMatch = () => {
+    if (match){
+      deleteMatch(match)
+    }
+  }
+
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
+        onClick={unMatch}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -57,4 +66,6 @@ const BotCard = ({bot}) => {
 
 };
 
-export default BotCard;
+
+
+export default connect(null, {deleteMatch})(BotCard);

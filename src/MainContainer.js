@@ -6,9 +6,7 @@ import {connect} from 'react-redux'
 
 class MainContainer extends React.Component{
 
-  // componentDidMount(){
-  //  this.props.getBots()
-  // }
+
 
   randomBot = () => {
     let index = Math.floor(Math.random()*this.props.bots.length)
@@ -20,7 +18,7 @@ class MainContainer extends React.Component{
     let myMatches = this.props.matches
 
     return myMatches.map(match => {
-      return <BotCard bot={match.bot}/>
+      return <BotCard key={match.id} match={match.id} bot={match.bot}/>
     })
   }
 
